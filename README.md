@@ -26,3 +26,9 @@ iac-github-actions-pipeline/
 - GitHub repository with your Terraform/OpenTofu code
 - AWS OIDC role for GitHub Actions (keyless auth — no stored AWS credentials)
 - `tflint` config file in your repo (optional but recommended)
+
+## Setup
+
+### 1. Create the AWS OIDC role
+
+GitHub Actions needs to assume an AWS role to run Terraform. Follow the [AWS OIDC guide](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services) or use the `aws-multi-account-landing-zone` project's `management/iam` configuration.
