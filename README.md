@@ -49,3 +49,13 @@ In your repository Settings → Secrets and Variables:
 |------|-------|
 | `GH_APP_PRIVATE_KEY` | Private key for your GitHub App |
 | `AWS_OIDC_ROLE_ARN` | ARN of the AWS role GitHub Actions assumes |
+
+### 3. Copy the workflows
+
+Copy `.github/workflows/` into your IaC repository's `.github/workflows/` folder. Update the `with:` inputs in `tofu-pipeline.yml` to match your setup.
+
+### 4. Configure branch protection
+
+In your repository Settings → Branches → main:
+- Enable "Require status checks to pass before merging"
+- Add `merge-gatekeeper` as a required check
