@@ -32,3 +32,20 @@ iac-github-actions-pipeline/
 ### 1. Create the AWS OIDC role
 
 GitHub Actions needs to assume an AWS role to run Terraform. Follow the [AWS OIDC guide](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services) or use the `aws-multi-account-landing-zone` project's `management/iam` configuration.
+
+### 2. Add GitHub secrets and variables
+
+In your repository Settings → Secrets and Variables:
+
+**Variables (not secret — visible in logs):**
+
+| Name | Value |
+|------|-------|
+| `GH_APP_ID` | Your GitHub App ID (for token generation) |
+
+**Secrets (encrypted):**
+
+| Name | Value |
+|------|-------|
+| `GH_APP_PRIVATE_KEY` | Private key for your GitHub App |
+| `AWS_OIDC_ROLE_ARN` | ARN of the AWS role GitHub Actions assumes |
