@@ -59,3 +59,27 @@ Copy `.github/workflows/` into your IaC repository's `.github/workflows/` folder
 In your repository Settings → Branches → main:
 - Enable "Require status checks to pass before merging"
 - Add `merge-gatekeeper` as a required check
+
+## How the pipeline works
+
+```
+PR opened/updated
+       │
+       ▼
+  tflint (lint all changed .tf files)
+       │
+       ▼
+  trivy (security scan — fails on HIGH/CRITICAL misconfigs)
+       │
+       ▼
+  tofu plan (for each changed stack)
+       │        └── posts plan output as PR comment
+       ▼
+  merge-gatekeeper (waits for all checks to pass)
+       │
+       ▼
+  Merge → main
+       │
+       ▼
+  tofu apply (triggered separately or via Spacelift)
+```
