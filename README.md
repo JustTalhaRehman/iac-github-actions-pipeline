@@ -89,3 +89,10 @@ PR opened/updated
 The merge gatekeeper workflow uses [upsidr/merge-gatekeeper](https://github.com/upsidr/merge-gatekeeper). It waits until all other required checks complete and pass before marking itself green.
 
 This prevents accidental merges when some checks are still running or haven't been triggered yet.
+
+## Security notes
+
+- AWS credentials are **never stored** — OIDC federation is used
+- Plan output is posted as a PR comment for review before merge
+- Trivy blocks on HIGH and CRITICAL Terraform misconfigurations
+- The GitHub App (not a personal access token) is used for posting comments and managing checks
