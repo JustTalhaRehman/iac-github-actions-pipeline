@@ -1,0 +1,26 @@
+name: Merge Gatekeeper
+
+on:
+  pull_request:
+    branches:
+      - main
+      - master
+
+jobs:
+  merge-gatekeeper:
+    name: All checks passed
+    runs-on: ubuntu-latest
+    permissions:
+      checks: read
+      statuses: read
+    steps:
+      - name: Wait for all checks
+        uses: upsidr/merge-gatekeeper@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          # Add any checks you want to explicitly ignore
+          ignored: ""
+          # How long to wait for checks to appear (seconds)
+          timeout: 600
+          # How often to poll (seconds)
+          interval: 15
