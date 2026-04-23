@@ -83,3 +83,9 @@ PR opened/updated
        ▼
   tofu apply (triggered separately or via Spacelift)
 ```
+
+## Merge Gatekeeper
+
+The merge gatekeeper workflow uses [upsidr/merge-gatekeeper](https://github.com/upsidr/merge-gatekeeper). It waits until all other required checks complete and pass before marking itself green.
+
+This prevents accidental merges when some checks are still running or haven't been triggered yet.
